@@ -1,0 +1,55 @@
+
+//Переменные ______________________
+
+$text-color: #4d4d4d;
+$text-height: 1;
+$font-asap: 'Asap', sans-serif;
+
+
+//Mixin ______________________
+
+@mixin max-screen($res) {
+  @media screen and (max-width: $res) {
+    @content;
+  }
+}
+
+//Наследование ______________________
+
+%btn {
+  line-height: 50px;
+  width: 160px;
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-color;
+  background-color: #dfdfdf;
+  text-transform: uppercase;
+  border: 1px solid #4d4d4d;
+  border-radius: 0;
+
+  padding: 0;
+}
+%title {
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1;
+  color: $text-color;
+  opacity: .8;
+  text-transform: uppercase;
+  position: relative;
+}
+%title__after{
+  display: inline-block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 60px;
+  color: $text-color;
+}
+%text{
+  font-size: 24px;
+  font-weight: 600;
+  color: $text-color;
+}
