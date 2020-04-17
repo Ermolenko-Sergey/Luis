@@ -7,9 +7,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400&family=Montserrat&display=swap');
 @import "../fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css";
 
-//font-family: 'Montserrat', sans-serif;
-
-
 //Header ___________________________
 
 .header {
@@ -29,11 +26,11 @@
             font-size: 16px;
             color: $text-color;
             position: relative;
+            transition: .2s;
 
             margin: 30px 10px;
             padding: 0;
 
-            //не работает hover
             &:before {
               display: block;
               content: "";
@@ -42,8 +39,10 @@
               left: 0;
               width: 100%;
               height: 2px;
-              color: #878787;
+              background-color: #878787;
               opacity: 0;
+
+              margin-bottom: -8px;
             }
 
             &:hover {
@@ -167,9 +166,9 @@
     @include max-screen(425px) {
       margin-top: 0;
       width: auto;
+      font-size: 38px;
     }
 
-    //в браузере есть но не отображается на странице
     &:after {
       display: block;
       content: "";
@@ -261,6 +260,10 @@
   .services__title {
     @extend %title;
 
+    @include max-screen(425px) {
+      font-size: 38px;
+    }
+
     &:after {
       @extend %title__after;
       left: 50%;
@@ -298,6 +301,10 @@
     @extend %title;
     margin-bottom: 30px;
 
+    @include max-screen(425px) {
+      font-size: 38px;
+    }
+
     &:after {
       @extend %title__after;
       left: 50%;
@@ -325,6 +332,10 @@
   .portfolio__title {
     @extend %title;
 
+    @include max-screen(425px) {
+      font-size: 38px;
+    }
+
     &:after {
       @extend %title__after;
       left: 50%;
@@ -336,8 +347,20 @@
     display: inline-block;
     width: 100%;
     height: 320px;
+    position: relative;
+    transition: .2s;
 
     margin-top: 30px;
+
+    &:hover {
+      -webkit-box-shadow: 0 0 60px 10px #B3B3B3;
+      box-shadow: 0 0 60px 10px #B3B3B3;
+
+      //не срабатывает hover
+      .portfolio__link {
+        opacity: 1;
+      }
+    }
 
     @include max-screen(768px) {
       width: 220px;
@@ -345,7 +368,22 @@
     }
   }
 
-  //при hover на btn поднимается нижний блок
+  .portfolio__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    background-color: #ffffff;
+    color: #585858;
+    opacity: 0;
+  }
+
   .btn {
     @extend %btn;
     width: 190px;
@@ -361,6 +399,7 @@
     &:hover {
       background-color: #ffffff;
       border: none;
+      line-height: 52px;
       -webkit-box-shadow: 0 20px 60px 10px #B3B3B3;
       box-shadow: 0 20px 60px 10px #B3B3B3;
     }
@@ -372,9 +411,17 @@
 .slider {
   padding: 125px 0 120px;
 
+  @include max-screen(425px) {
+    padding: 20px 0 20px;
+  }
+
   .slider__title {
     @extend %title;
     margin-bottom: 50px;
+
+    @include max-screen(425px) {
+      font-size: 38px;
+    }
 
     &:after {
       @extend %title__after;
@@ -391,47 +438,74 @@
 
     padding: 85px 70px 108px 120px;
 
+    @include max-screen(768px) {
+      width: auto;
+    }
+    @include max-screen(425px) {
+      padding: 10px 10px;
+    }
+
     .slider__item {
       display: flex;
+
+      @include max-screen(425px) {
+        flex-direction: column;
+        align-items: center;
+      }
 
       .slider__photo {
         display: block;
         width: 160px;
         height: 160px;
 
-
         margin-right: 30px;
+
+        @include max-screen(425px) {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
       }
 
-      .slider__name {
-        font-size: 30px;
-        font-weight: 600;
-        line-height: $text-height;
-        color: #212121;
-        text-transform: uppercase;
-        opacity: .9;
+      .slider__text {
+        @include max-screen(425px) {
+          text-align: center;
+        }
 
-        margin-bottom: 5px;
-      }
+        .slider__name {
+          font-size: 30px;
+          font-weight: 600;
+          line-height: $text-height;
+          color: #212121;
+          text-transform: uppercase;
+          opacity: .9;
 
-      .slider__position {
-        font-size: 12px;
-        line-height: $text-height;
-        color: #212121;
-        text-transform: uppercase;
-        font-style: italic;
-        opacity: .9;
+          margin-bottom: 5px;
+        }
 
-        margin-bottom: 10px;
-      }
+        .slider__position {
+          font-size: 12px;
+          line-height: $text-height;
+          color: #212121;
+          text-transform: uppercase;
+          font-style: italic;
+          opacity: .9;
 
-      .slider__description {
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 1.6;
-        color: #212121;
-        text-transform: uppercase;
-        opacity: .6;
+          margin-bottom: 10px;
+        }
+
+        .slider__description {
+          font-size: 16px;
+          font-weight: 300;
+          line-height: 1.6;
+          color: #212121;
+          text-transform: uppercase;
+          opacity: .6;
+
+          @include max-screen(425px) {
+            font-size: 12px;
+            line-height: 1.5;
+          }
+        }
       }
     }
 
@@ -456,7 +530,244 @@
         position: absolute;
         bottom: -50px;
         right: 50%;
+
+        @include max-screen(425px) {
+          bottom: -5px;
+          margin-right: -25px;
+        }
       }
     }
   }
+}
+
+//Counter ___________________________
+
+.counter {
+  background-color: #f6f6f6;
+  padding: 55px 0 45px;
+  margin-bottom: 154px;
+
+  @include max-screen(425px) {
+    margin-bottom: 0;
+  }
+
+  .counter__img {
+    display: inline-block;
+    height: 82px;
+
+    margin-bottom: 30px;
+
+    @include max-screen(425px) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .counter__number{
+    @extend %text;
+    font-size: 30px;
+    line-height: $text-height;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+  }
+
+  .counter__name {
+    @extend %text;
+    font-size: 22px;
+    line-height: $text-height;
+    font-weight: 300;
+
+    margin-bottom: 20px;
+
+    @include max-screen(425px) {
+      font-size: 18px;
+    }
+  }
+}
+
+//Footer ___________________________
+
+.footer {
+  background: #646465 url('../images/footer-bg.jpg') no-repeat center;
+  background-size: cover;
+
+  padding: 145px 0 30px;
+
+  @include max-screen(425px) {
+    padding: 20px 0 20px;
+    background: #646465 url('../images/footer-bg.jpg') no-repeat;
+
+  }
+
+  .footer__title {
+    @extend %title;
+    color: #FFFFFF;
+    margin-bottom: 70px;
+
+    @include max-screen(425px) {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    &:after {
+      @extend %title__after;
+      left: 50%;
+      margin: -18px 0 0 -25px;
+      background-color: #c1c1c1;
+    }
+  }
+
+  .form-group{
+    margin-bottom: 30px;
+
+    .form-control{
+      font-size: 16px;
+      font-weight: 300;
+      color: #212121;
+      background-color: #fff;
+      opacity: .8;
+      outline: none;
+
+      height: 58px;
+      border-radius: 0;
+    }
+  }
+
+  textarea{
+    &.form-control{
+      height: 207px!important;
+
+      padding-top: 25px;
+      margin-bottom: 15px;
+    }
+  }
+  button{
+    &.btn{
+      @extend %btn;
+      width: 124px;
+      border: none;
+    }
+    &.btn-default{
+      background-image: none;
+      transition: background .2s linear;
+
+      &:hover {
+        background-color: #ffffff;
+        border: none;
+        -webkit-box-shadow: 0 20px 60px 10px #B3B3B3;
+        box-shadow: 0 20px 60px 10px #B3B3B3;
+      }
+    }
+
+    i{
+      margin-left: 7px;
+    }
+  }
+
+  .footer__social{
+    margin-top: 50px;
+
+    @include max-screen(425px) {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .social__icon{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 27px;
+      width: 27px;
+      background-color: #fff;
+      transition: .2s linear;
+      text-decoration: none;
+
+      margin-right: 5px;
+
+      &:hover i {
+        color: #fff;
+      }
+
+      i {
+        font-size: 15px;
+        color: #4d4d4d;
+        opacity: .9;
+      }
+    }
+
+    .icon--fb:hover {
+      background-color: #3b5997;
+    }
+    .icon--tw:hover {
+      background-color: #3ec2f3;
+    }
+    .icon--in:hover {
+      background-color: #0e76a8;
+    }
+    .icon--gp:hover {
+      background-color: #e44c41;
+    }
+    .icon--be:hover {
+      background-color: #053eff;
+    }
+    .icon--db:hover {
+      background-color: #ea4c89;
+    }
+  }
+
+  .footer__year{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #FFFFFF;
+    line-height: 27px;
+
+    margin: 50px 0 0 -36px;
+
+    @include max-screen(768px) {
+      margin-top: 20px;
+    }
+    @include max-screen(425px) {
+      text-align: center;
+    }
+  }
+
+  .footer--border{
+    border-top: 1px solid #c4c4c4;
+    width: 100%;
+
+    @include max-screen(768px) {
+      width: auto;
+    }
+  }
+}
+
+//Button-up ___________________________
+
+#button-up{
+  display: none;
+  position: fixed;
+  width: 41px;
+  height: 41px;
+  right: 30px;
+  bottom: 193px;
+  text-align: center;
+  font-size: 24px;
+  color: #4d4d4d;
+  background-color: #fff;
+  transition: .3s;
+
+  padding-top: 5px;
+
+  @include max-screen(425px) {
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+#button-up:hover{
+  cursor: pointer;
+  transition: .3s;
+  -webkit-box-shadow: 0 0 60px 10px #B3B3B3;
+  box-shadow: 0 0 60px 10px #B3B3B3;
 }
